@@ -1,9 +1,8 @@
 fn main() {
     std::process::Command::new("sh")
-        .arg("-c")
-        .arg("PS1='$ ' sh")
+        .env("PS1", "$ ")
         .spawn()
-        .unwrap()
+        .expect("Failed to spawn shell")
         .wait()
-        .unwrap();
+        .expect("Failed to wait for shell's exit");
 }
